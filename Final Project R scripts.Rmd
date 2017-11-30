@@ -58,7 +58,7 @@ $ samtools flagstat Tumor_1Aligned.out.bam
 $ samtools flagstat Tumor_2Aligned.out.bam
 $ samtools flagstat Tumor_3Aligned.out.bam
 
-#Creating transcroptome_index using Salmon
+#Creating transcriptome_index using Salmon
 $ wget ftp://ftp.ensembl.org/pub/release-67/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh37.67.cdna.all.fa.gz
 $ salmon index -t Homo_sapiens.GRCh37.67.cdna.all.fa -i Homo_sapiens.GRCh37.67.cdna.all_index
 
