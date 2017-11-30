@@ -1,0 +1,99 @@
+---
+title: "Scripts/Code used for my RNAseq analysis (Alignment and Transcript quantification)"
+author: "Marilena Melas"
+date: "November 29, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{bash}
+#make new directory for my final project and transfer my raw fastq files.
+$ mkdir finalproject
+#merge the reads1 fastq files from both lanes together and same with reads2 fastq files
+$ cat *R1*.fastq > 636A5R1.fastq
+$ cat *R2*.fastq > 636A5R2.fastq
+$ cat *R1*.fastq > 8482E-germline_R1.fastq
+$ cat *R2*.fastq > 8482E-germline_R2.fastq
+$ cat *R1*.fastq > 8482B1R1.fastq
+$ cat *R2*.fastq > 8482B1R2.fastq
+$ cat *R1*.fastq > 8482ER1.fastq
+$ cat *R2*.fastq > 8482ER2.fastq
+
+# Alignment using STAR
+$ STAR --genomeDir hg19-starIndex/ --runThreadN 24 --readFilesIn Fastq_tumor_1/636A5R1.fastq Fastq_tumor_1/636A5R2.fastq --outFileNamePrefix Tumor_1
+$ STAR --genomeDir hg19-starIndex/ --runThreadN 24 --readFilesIn Fastq_tumor_2/8482B1R1.fastq Fastq_tumor_2/8482B1R2.fastq --outFileNamePrefix Tumor_2
+$  STAR --genomeDir hg19-starIndex/ --runThreadN 24 --readFilesIn Fastq_tumor_3/8482ER1.fastq Fastq_tumor_3/8482ER2.fastq --outFileNamePrefix Tumor_3
+$  STAR --genomeDir hg19-starIndex/ --runThreadN 24 --readFilesIn Fastq_normal/8482E-germline_R1.fastq Fastq_normal/8482E-germline_R2.fastq --outFileNamePrefix Normal
+
+#QC of uniquelly mapped reads 
+$ cat NormalLog.final.out
+$ cat Tumor_1Log.final.out
+$ cat Tumor_2log.final.out
+$ cat Tumor_3Log.final.out
+
+# Convert SAM to BAM files
+$ samtools view -bS NormalAligned.out.sam > NormalAligned.out.bam
+$ samtools view -bS Tumor_1Aligned.out.sam > Tumor_1Aligned.out.bam
+$ samtools view -bS Tumor_2Aligned.out.sam > Tumor_2Aligned.out.bam
+$ samtools view -bS Tumor_3Aligned.out.sam > Tumor_3Aligned.out.bam
+
+#Sorting the BAM files
+$ samtools sort NormalAligned.out.bam -o NormalAligned.out.sorted.bam
+$ samtools sort Tumor_1Aligned.out.bam -o Tumor_1Aligned.out.sorted.bam
+$ samtools sort Tumor_2Aligned.out.bam -o Tumor_2Aligned.out.sorted.bam
+$ samtools sort Tumor_3Aligned.out.bam -o Tumor_3Aligned.out.sorted.bam
+
+#Indexing the sorted BAM files
+$ samtools index NormalAligned.out.sorted.bam
+$ samtools index Tumor_1Aligned.out.sorted.bam
+$ samtools index Tumor_2Aligned.out.sorted.bam
+$ samtools index Tumor_3Aligned.out.sorted.bam
+
+#QC of the alignment using samtools 
+$ samtools flagstat NormalAligned.out.bam
+$ samtools flagstat Tumor_1Aligned.out.bam
+$ samtools flagstat Tumor_2Aligned.out.bam
+$ samtools flagstat Tumor_3Aligned.out.bam
+
+#Creating transcroptome_index using Salmon
+$ wget ftp://ftp.ensembl.org/pub/release-67/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh37.67.cdna.all.fa.gz
+$ salmon index -t Homo_sapiens.GRCh37.67.cdna.all.fa -i Homo_sapiens.GRCh37.67.cdna.all_index
+
+#Transcripts quantification using Salmon
+$ salmon quant -i Homo_sapiens.GRCh37.67.cdna.all_index -l A -1 8482E-germline_R1.fastq -2 8482E-germline_R2.fastq -p 8 -o quants
+$ salmon quant -i Homo_sapiens.GRCh37.67.cdna.all_index -l A -1 8482B1R1.fastq -2 8482B1R2.fastq -p 8 -o quants
+$ salmon quant -i Homo_sapiens.GRCh37.67.cdna.all_index -l A -1 8482ER1.fastq -2 8482ER2.fastq -p 8 -o quants
+$ salmon quant -i Homo_sapiens.GRCh37.67.cdna.all_index -l A -1 636A5R1.fastq -2 636A5R2.fastq -p 8 -o quants
+
+
+
+
+
+
+```
+
+
+
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
