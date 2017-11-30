@@ -9,7 +9,7 @@ RNAseq analysis (paired-end sequencing in two lanes) using three FFPE derived cl
 (Tumor_1 VS normal, Tumor_2 VS normal, Tumor_3 VS normal)
 
 Files description and organization:
-All my files for the final project are inside the directory called 'finalproject' on melas@itg.usc.edu server. I have organized my fastq raw data inside different subdirectories called, a) Fastq_normal, b) Fastq_tumor_1. c) Fastq_tumor_2, and Fastq_tumor_3. I first unzipped them using 'gunzip' command. The detailed code/scripts which I used for the STAR alignment and transcript quantificaion using Salmon is described in the R Markdown document below. The 'quant.sf' files with the transctip quantification metrics are inside the directory 'quants' within each of the subdirectories afore mentioned for each sample individually. Next step includes differential expression using DSeq2. 
+All my files for the final project are inside the directory called 'finalproject' on melas@itg.usc.edu server. I have organized my fastq raw data inside different subdirectories called, a) Fastq_normal, b) Fastq_tumor_1. c) Fastq_tumor_2, and Fastq_tumor_3. I first unzipped them using 'gunzip' command. The detailed code/scripts which I used for the STAR alignment and transcript quantificaion using Salmon is described in the R Markdown document below. The 'quant.sf' files with the transcript quantification metrics are inside the directory 'quants' within each of the subdirectories afore mentioned for each sample individually. Next step includes differential expression using DSeq2. 
 
 ```{bash}
 #make new directory for my final project.
