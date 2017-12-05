@@ -1,5 +1,5 @@
 # TRGN510_finalproject
- The purpose of my final project is to perform RNAseq analysis using STAR aligner, for an individual with clear cell renal cell carcinoma, using three FFPE derived tumor samples and one adjacent normal.
+ The purpose of my final project was to perform RNAseq analysis for an individual with clear cell renal cell carcinoma, using three FFPE derived tumor samples and one adjacent normal.
  
  Build with:
  1. Bash/command line on itg server (melas@itg.usc.edu)
