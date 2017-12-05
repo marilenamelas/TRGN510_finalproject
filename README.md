@@ -30,6 +30,7 @@ A) All my files are inside the directory called 'finalproject' on melas@itg.usc.
 B) Where to find my RDATA:
 Inside the directory 'finalproject' there is another directory called 'R_data'. This includes a subdirectory named    'My_work_in_R' which contains two files: a) Mywork_Rdata.rmd and Tables.RData. My detailed R script is described in the R script document uploaded on github (named as: All R scripts.R).
  
+ ALL MY GRAPHS ARE SUMMARIZED IN THE 'RESULTS AND CONCLUSIONS' DOCUMENT.
  
  BUILD WITH:
  1. Bash/command line on itg server (melas@itg.usc.edu)
