@@ -2,7 +2,7 @@
  The purpose of my final project was to perform RNAseq analysis for an individual with clear cell renal cell carcinoma, using three FFPE derived tumor samples and one adjacent normal. My samples are labelled as : Normal, Tumor1, Tumor2 and Tumor3 and all come from the same individual.  
  
 PROJECT GOAL/DESCRIPTION:
-RNAseq analysis (paired-end sequencing in two lanes) was performed using three FFPE derived clear cell renal cell carcinoma tumor samples VS one FFPE derived adjacent normal. Ultimate scope: QC of the samples and differential expression using the adjacent normal sample as my control. I worked both using Bash/command line and R script. The steps for my analysis are described below in detail: 
+RNAseq analysis (paired-end sequencing in two lanes) was performed using three FFPE derived clear cell renal cell carcinoma tumor samples VS one FFPE derived adjacent normal. Ultimate scope: QC of the samples and differential expression using the adjacent normal sample as my control. I worked using Bash/command line and R script. The steps for my analysis are described below in detail: 
  
 Work performed on the ITG server:
 1) Alignment of FASTQ files: 
