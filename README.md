@@ -24,6 +24,7 @@ I ploted the log-fold changes of all the genes (MA plot) and highlighted those t
  
 
 FILES ORGANIZATION/LOCATION:
+
 A) All my files are inside the directory called 'finalproject' on melas@itg.usc.edu server. I have organized my fastq raw data inside different subdirectories called, a) Fastq_normal, b) Fastq_tumor_1. c) Fastq_tumor_2, and Fastq_tumor_3. I first unzipped them using 'gunzip' command. The detailed code/scripts which I used for the STAR alignment and transcript quantificaion using Salmon is described in the R Markdown document uploaded on github. The 'quant.sf' files with the transcript quantification metrics are inside the directory 'quants' within each of the subdirectories afore mentioned for each sample individually. 
 
 B) Where to find my RDATA:
